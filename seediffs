@@ -1,0 +1,6 @@
+#!/bin/bash
+# Scroll through diff file by file 
+
+# Files changed in working dir
+files=$(git status | grep modified | awk -F " " '{print $2}')
+echo files
