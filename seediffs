@@ -2,8 +2,16 @@
 # Scroll through diff file by file
 
 # Files changed in working dir
-FILES=$(git status | grep modified | awk -F " " '{print $2}')
+# FILES=$(git status | grep modified | awk -F " " '{print $2}')
+
+FILES=$(git diff --name-only)
 
 for F in $FILES; do
         echo $F
+        read -rsn1 key
+        if [ "$key" = "n" ]; then
+                for L in $(git diff $F); do
+                        echo $L
+                done
+        fi
 done
